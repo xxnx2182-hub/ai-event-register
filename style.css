@@ -214,24 +214,81 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-.form-message {
-  margin-top: 16px;
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 61, 145, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.popup-overlay[hidden] {
+  display: none;
+}
+
+.popup-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 28px 24px;
+  max-width: 320px;
+  width: 100%;
   text-align: center;
-  font-weight: 600;
+  box-shadow: 0 12px 40px rgba(11, 61, 145, 0.25);
+  animation: popup-pop 0.18s ease-out;
+}
+
+@keyframes popup-pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green);
+}
+
+.popup-box.error .popup-icon {
+  background: var(--red);
+}
+
+.popup-box p {
+  margin: 0 0 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-700);
+}
+
+.popup-box button {
+  padding: 10px 28px;
+  background: var(--blue-700);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
   font-size: 0.95rem;
-  min-height: 1.2em;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.form-message.success {
-  color: var(--green);
-}
-
-.form-message.error {
-  color: var(--red);
-}
-
-.form-message.loading {
-  color: var(--blue-700);
+.popup-box button:hover {
+  background: var(--blue-900);
 }
 
 @media (max-width: 560px) {

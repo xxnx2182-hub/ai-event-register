@@ -3,7 +3,12 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw8uIBVPSEFyUSPopmN
 
 const form = document.getElementById("registerForm");
 const submitBtn = document.getElementById("submitBtn");
-const formMessage = document.getElementById("formMessage");
+
+const popupOverlay = document.getElementById("popupOverlay");
+const popupBox = document.getElementById("popupBox");
+const popupIcon = document.getElementById("popupIcon");
+const popupText = document.getElementById("popupText");
+const popupCloseBtn = document.getElementById("popupCloseBtn");
 
 const aiGoalInput = document.getElementById("aiGoal");
 const aiGoalCount = document.getElementById("aiGoalCount");
@@ -19,10 +24,21 @@ function bindCharCount(input, counter) {
 bindCharCount(aiGoalInput, aiGoalCount);
 bindCharCount(suggestionInput, suggestionCount);
 
-function setMessage(text, type) {
-  formMessage.textContent = text;
-  formMessage.className = "form-message" + (type ? " " + type : "");
+function showPopup(text, type) {
+  popupText.textContent = text;
+  popupBox.className = "popup-box" + (type ? " " + type : "");
+  popupIcon.textContent = type === "error" ? "✕" : "✓";
+  popupOverlay.hidden = false;
 }
+
+function hidePopup() {
+  popupOverlay.hidden = true;
+}
+
+popupCloseBtn.addEventListener("click", hidePopup);
+popupOverlay.addEventListener("click", (e) => {
+  if (e.target === popupOverlay) hidePopup();
+});
 
 function getCheckedValues(name) {
   return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`))
@@ -46,8 +62,7 @@ form.addEventListener("submit", async (e) => {
   const data = {
     prefix: getRadioValue("prefix"),
     studentId: document.getElementById("studentId").value.trim(),
-    firstName: document.getElementById("firstName").value.trim(),
-    lastName: document.getElementById("lastName").value.trim(),
+    fullName: document.getElementById("fullName").value.trim(),
     nickname: document.getElementById("nickname").value.trim(),
     birthdate: document.getElementById("birthdate").value,
     year: getRadioValue("year"),
@@ -64,8 +79,9 @@ form.addEventListener("submit", async (e) => {
     confirm: document.getElementById("confirm").checked ? "ยินยอม" : "",
   };
 
+  const originalBtnText = submitBtn.textContent;
   submitBtn.disabled = true;
-  setMessage("กำลังบันทึกข้อมูล...", "loading");
+  submitBtn.textContent = "กำลังบันทึกข้อมูล...";
 
   try {
     // Google Apps Script Web App ไม่ส่ง header CORS กลับมาให้อ่านค่า response ได้
@@ -79,14 +95,15 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(data),
     });
 
-    setMessage("ลงทะเบียนสำเร็จ", "success");
+    showPopup("ลงทะเบียนสำเร็จ", "success");
     form.reset();
     aiGoalCount.textContent = "0";
     suggestionCount.textContent = "0";
   } catch (err) {
     console.error(err);
-    setMessage("ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง", "error");
+    showPopup("ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง", "error");
   } finally {
     submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
   }
 });

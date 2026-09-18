@@ -42,15 +42,9 @@
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="field">
-          <label for="firstName">ชื่อจริง <span class="req">*</span></label>
-          <input type="text" id="firstName" name="firstName" required>
-        </div>
-        <div class="field">
-          <label for="lastName">นามสกุล <span class="req">*</span></label>
-          <input type="text" id="lastName" name="lastName" required>
-        </div>
+      <div class="field">
+        <label for="fullName">ชื่อ-นามสกุล <span class="req">*</span></label>
+        <input type="text" id="fullName" name="fullName" required placeholder="เช่น สมชาย ใจดี">
       </div>
 
       <div class="field">
@@ -191,12 +185,18 @@
       </div>
 
       <button type="submit" id="submitBtn">ลงทะเบียน</button>
-
-      <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
     </section>
 
   </form>
 
+</div>
+
+<div id="popupOverlay" class="popup-overlay" hidden>
+  <div class="popup-box" id="popupBox">
+    <div class="popup-icon" id="popupIcon"></div>
+    <p id="popupText"></p>
+    <button type="button" id="popupCloseBtn">ตกลง</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
