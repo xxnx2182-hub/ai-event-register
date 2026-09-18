@@ -1,5 +1,5 @@
 // ⚠️ แก้บรรทัดนี้: นำ Web App URL ที่ได้จากการ Deploy Google Apps Script มาใส่แทนค่าด้านล่าง
-const WEB_APP_URL = "https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw8uIBVPSEFyUSPopmN3ULP9zrVvqUxT6L2DvUIUTl8kAYAlNOOZwOJs5zgqXwkrMPl9A/exec";
 
 const form = document.getElementById("registerForm");
 const submitBtn = document.getElementById("submitBtn");
