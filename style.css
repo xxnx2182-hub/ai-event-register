@@ -1,0 +1,249 @@
+:root {
+  --blue-900: #0b3d91;
+  --blue-700: #1a56c4;
+  --blue-500: #2f7bf0;
+  --blue-100: #e8f1ff;
+  --blue-50: #f4f8ff;
+  --gray-700: #3a3f47;
+  --gray-400: #8b93a1;
+  --gray-200: #e2e6ec;
+  --white: #ffffff;
+  --red: #d64545;
+  --green: #1a8f4c;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Sarabun", "Noto Sans Thai", Tahoma, sans-serif;
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 320px);
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  color: var(--blue-900);
+  font-size: 1.7rem;
+  margin: 0 0 8px;
+}
+
+.page-header p {
+  color: var(--gray-400);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(11, 61, 145, 0.05);
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  color: var(--blue-700);
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--blue-100);
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 6px;
+}
+
+.req {
+  color: var(--red);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--gray-700);
+  background: var(--white);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px var(--blue-100);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.charcount {
+  display: block;
+  text-align: right;
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 4px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  background: var(--blue-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-bottom: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.radio-group label:has(input:checked),
+.checkbox-group label:has(input:checked) {
+  background: var(--blue-100);
+  border-color: var(--blue-500);
+  color: var(--blue-900);
+}
+
+.radio-group input,
+.checkbox-group input {
+  accent-color: var(--blue-700);
+  width: 16px;
+  height: 16px;
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--blue-700);
+  background: var(--blue-50);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.checkbox-confirm label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.checkbox-confirm input {
+  margin-top: 3px;
+  accent-color: var(--blue-700);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: var(--blue-700);
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+
+button[type="submit"]:hover {
+  background: var(--blue-900);
+}
+
+button[type="submit"]:disabled {
+  background: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.form-message {
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-height: 1.2em;
+}
+
+.form-message.success {
+  color: var(--green);
+}
+
+.form-message.error {
+  color: var(--red);
+}
+
+.form-message.loading {
+  color: var(--blue-700);
+}
+
+@media (max-width: 560px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding: 20px 12px 48px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}

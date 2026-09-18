@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ลงทะเบียนเข้าร่วมกิจกรรม AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="page-header">
+    <h1>ลงทะเบียนเข้าร่วมกิจกรรม AI</h1>
+    <p>กรอกข้อมูลด้านล่างเพื่อเข้าร่วมกิจกรรม — ไม่เคยเขียนโปรแกรมก็ลงทะเบียนได้ มีคอร์สปูพื้นฐานให้</p>
+  </header>
+
+  <form id="registerForm" novalidate>
+
+    <!-- ข้อมูลส่วนตัว -->
+    <section class="card">
+      <h2>ข้อมูลส่วนตัว</h2>
+
+      <div class="field">
+        <label>คำนำหน้า <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="prefix" value="นาย" required> นาย</label>
+          <label><input type="radio" name="prefix" value="นาง" required> นาง</label>
+          <label><input type="radio" name="prefix" value="นางสาว" required> นางสาว</label>
+          <label><input type="radio" name="prefix" value="ไม่ระบุ" required> ไม่ระบุ</label>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="studentId">รหัสนิสิต <span class="req">*</span></label>
+          <input type="text" id="studentId" name="studentId" required>
+        </div>
+        <div class="field">
+          <label for="birthdate">วันเกิด (ไม่บังคับ)</label>
+          <input type="date" id="birthdate" name="birthdate">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="firstName">ชื่อจริง <span class="req">*</span></label>
+          <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="field">
+          <label for="lastName">นามสกุล <span class="req">*</span></label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="nickname">ชื่อเล่น <span class="req">*</span></label>
+        <input type="text" id="nickname" name="nickname" required>
+      </div>
+    </section>
+
+    <!-- ข้อมูลการศึกษา -->
+    <section class="card">
+      <h2>ข้อมูลการศึกษา</h2>
+
+      <div class="field">
+        <label>ชั้นปี <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="year" value="ชั้นปีที่ 1" required> ชั้นปีที่ 1</label>
+          <label><input type="radio" name="year" value="ชั้นปีที่ 2" required> ชั้นปีที่ 2</label>
+          <label><input type="radio" name="year" value="ชั้นปีที่ 3" required> ชั้นปีที่ 3</label>
+          <label><input type="radio" name="year" value="ชั้นปีที่ 4" required> ชั้นปีที่ 4</label>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="faculty">คณะ <span class="req">*</span></label>
+          <select id="faculty" name="faculty" required>
+            <option value="" disabled selected>-- เลือกคณะ --</option>
+            <option>คณะวิทยาการสารสนเทศ</option>
+            <option>คณะวิศวกรรมศาสตร์</option>
+            <option>คณะวิทยาศาสตร์</option>
+            <option>คณะการบัญชีและการจัดการ</option>
+            <option>คณะศึกษาศาสตร์</option>
+            <option>คณะมนุษยศาสตร์และสังคมศาสตร์</option>
+            <option>คณะเทคโนโลยี</option>
+            <option>คณะสาธารณสุขศาสตร์</option>
+            <option>คณะแพทยศาสตร์</option>
+            <option>คณะพยาบาลศาสตร์</option>
+            <option>คณะเภสัชศาสตร์</option>
+            <option>คณะสถาปัตยกรรมศาสตร์ ผังเมืองและนฤมิตศิลป์</option>
+            <option>คณะนิติศาสตร์</option>
+            <option>คณะศิลปกรรมศาสตร์และวัฒนธรรมศาสตร์</option>
+            <option>อื่น ๆ</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="major">สาขาวิชา <span class="req">*</span></label>
+          <input type="text" id="major" name="major" required placeholder="เช่น วิทยาการคอมพิวเตอร์">
+        </div>
+      </div>
+    </section>
+
+    <!-- ช่องทางติดต่อ -->
+    <section class="card">
+      <h2>ช่องทางติดต่อ</h2>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="email">อีเมล <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" required pattern="[0-9]{9,10}" placeholder="0812345678">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="lineId">LINE ID หรือช่องทางอื่น (ไม่บังคับ)</label>
+        <input type="text" id="lineId" name="lineId">
+      </div>
+    </section>
+
+    <!-- พื้นฐานด้าน AI -->
+    <section class="card">
+      <h2>พื้นฐานด้าน AI</h2>
+
+      <div class="field">
+        <label>ระดับประสบการณ์ <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="level" value="เริ่มต้น — ยังไม่เคยใช้" required> เริ่มต้น — ยังไม่เคยใช้</label>
+          <label><input type="radio" name="level" value="พอใช้ — เคยลองเล่น" required> พอใช้ — เคยลองเล่น</label>
+          <label><input type="radio" name="level" value="ดี — เคยทำโปรเจกต์" required> ดี — เคยทำโปรเจกต์</label>
+          <label><input type="radio" name="level" value="เชี่ยวชาญ — เขียนโมเดลเองได้" required> เชี่ยวชาญ — เขียนโมเดลเองได้</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>หัวข้อที่สนใจ (เลือกได้หลายข้อ)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="interests" value="Machine Learning"> Machine Learning</label>
+          <label><input type="checkbox" name="interests" value="Deep Learning"> Deep Learning</label>
+          <label><input type="checkbox" name="interests" value="Computer Vision"> Computer Vision</label>
+          <label><input type="checkbox" name="interests" value="การประมวลผลภาษา (NLP)"> การประมวลผลภาษา (NLP)</label>
+          <label><input type="checkbox" name="interests" value="Data Science"> Data Science</label>
+          <label><input type="checkbox" name="interests" value="Generative AI"> Generative AI</label>
+          <label><input type="checkbox" name="interests" value="หุ่นยนต์และ IoT"> หุ่นยนต์และ IoT</label>
+          <label><input type="checkbox" name="interests" value="จริยธรรม AI"> จริยธรรม AI</label>
+          <label><input type="checkbox" name="interests" value="AI ในงานธุรกิจ"> AI ในงานธุรกิจ</label>
+          <label><input type="checkbox" name="interests" value="AI ทางการแพทย์"> AI ทางการแพทย์</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>ภาษาโปรแกรมที่เคยใช้ (เลือกได้หลายข้อ)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="languages" value="Python"> Python</label>
+          <label><input type="checkbox" name="languages" value="JavaScript"> JavaScript</label>
+          <label><input type="checkbox" name="languages" value="C / C++"> C / C++</label>
+          <label><input type="checkbox" name="languages" value="Java"> Java</label>
+          <label><input type="checkbox" name="languages" value="SQL"> SQL</label>
+          <label><input type="checkbox" name="languages" value="R"> R</label>
+          <label><input type="checkbox" name="languages" value="MATLAB"> MATLAB</label>
+          <label><input type="checkbox" name="languages" value="ยังไม่เคยเขียน"> ยังไม่เคยเขียน</label>
+        </div>
+        <p class="hint">ไม่เคยเขียนโปรแกรมก็ลงทะเบียนได้ มีคอร์สปูพื้นฐานให้</p>
+      </div>
+
+      <div class="field">
+        <label for="aiGoal">อยากใช้ AI ทำอะไร (ไม่บังคับ)</label>
+        <textarea id="aiGoal" name="aiGoal" maxlength="500" rows="3"></textarea>
+        <span class="charcount"><span id="aiGoalCount">0</span>/500</span>
+      </div>
+
+      <div class="field">
+        <label for="suggestion">ข้อเสนอแนะเพิ่มเติม (ไม่บังคับ)</label>
+        <textarea id="suggestion" name="suggestion" maxlength="500" rows="3"></textarea>
+        <span class="charcount"><span id="suggestionCount">0</span>/500</span>
+      </div>
+    </section>
+
+    <!-- การยืนยัน -->
+    <section class="card">
+      <div class="field checkbox-confirm">
+        <label>
+          <input type="checkbox" id="confirm" name="confirm" required>
+          ข้าพเจ้ายืนยันว่าข้อมูลข้างต้นเป็นความจริง และยินยอมให้ระบบจัดเก็บข้อมูลนี้ไว้ในฐานข้อมูลเพื่อใช้ติดต่อและจัดกลุ่มกิจกรรม
+        </label>
+      </div>
+
+      <button type="submit" id="submitBtn">ลงทะเบียน</button>
+
+      <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+    </section>
+
+  </form>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
