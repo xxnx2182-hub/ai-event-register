@@ -1,68 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Sarabun:wght@400;500;600&display=swap');
+
 :root {
-  --blue-900: #0b3d91;
-  --blue-700: #1a56c4;
-  --blue-500: #2f7bf0;
-  --blue-100: #e8f1ff;
-  --blue-50: #f4f8ff;
-  --gray-700: #3a3f47;
-  --gray-400: #8b93a1;
-  --gray-200: #e2e6ec;
+  /* core palette — soft AI-network glow: indigo/violet gradient behind frosted glass */
+  --grad-1: #a9c1ff;
+  --grad-2: #7d8ff2;
+  --grad-3: #c7a8f5;
+  --grad-4: #f6c9e2;
+  --accent: #5b6ff5;
+  --accent-deep: #4453d6;
+  --ink: #232a4d;
+  --ink-soft: #5b6288;
+  --glass: rgba(255, 255, 255, 0.28);
+  --glass-strong: rgba(255, 255, 255, 0.4);
+  --field-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.55);
   --white: #ffffff;
   --red: #d64545;
   --green: #1a8f4c;
-  --radius: 12px;
+  --radius: 20px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: "Segoe UI", "Sarabun", "Noto Sans Thai", Tahoma, sans-serif;
-  background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 320px);
-  color: var(--gray-700);
+  min-height: 100vh;
+  font-family: "Sarabun", "Segoe UI", Tahoma, sans-serif;
+  color: var(--ink);
   line-height: 1.6;
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 45%, var(--grad-3) 75%, var(--grad-4));
+  background-size: 220% 220%;
+  animation: drift-bg 22s ease-in-out infinite alternate;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes drift-bg {
+  0%   { background-position: 0% 30%; }
+  100% { background-position: 100% 70%; }
+}
+
+/* ambient floating orbs — decorative, behind the glass cards */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.1) 45%, transparent 70%),
+              radial-gradient(circle at 65% 70%, var(--grad-2), var(--grad-3));
+  box-shadow: 0 20px 60px rgba(60, 60, 140, 0.25);
+}
+
+.orb-1 { width: 220px; height: 220px; top: -60px; left: -60px; animation: float-a 6s ease-in-out infinite; }
+.orb-2 { width: 140px; height: 140px; top: 15%; right: 6%; animation: float-b 5s ease-in-out infinite; }
+.orb-3 { width: 90px;  height: 90px;  bottom: 12%; left: 4%; animation: float-c 4.5s ease-in-out infinite; }
+.orb-4 { width: 170px; height: 170px; bottom: -50px; right: -40px; animation: float-a 7s ease-in-out infinite reverse; }
+
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(60px, -70px) scale(1.08); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-50px, 55px); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(45px, 40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  .orb { animation: none; }
 }
 
 .page {
-  max-width: 760px;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 32px 16px 64px;
+  padding: 48px 16px 72px;
 }
 
 .page-header {
   text-align: center;
   margin-bottom: 28px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(60, 60, 140, 0.18);
 }
 
 .page-header h1 {
-  color: var(--blue-900);
-  font-size: 1.7rem;
+  font-family: "Kanit", "Sarabun", sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.75rem;
   margin: 0 0 8px;
 }
 
 .page-header p {
-  color: var(--gray-400);
+  color: var(--ink-soft);
   margin: 0;
   font-size: 0.95rem;
 }
 
 .card {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 26px 24px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(11, 61, 145, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(60, 60, 140, 0.14);
 }
 
 .card h2 {
+  font-family: "Kanit", "Sarabun", sans-serif;
+  font-weight: 600;
   font-size: 1.1rem;
-  color: var(--blue-700);
+  color: var(--accent-deep);
   margin: 0 0 18px;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--blue-100);
+  border-bottom: 1px solid rgba(91, 111, 245, 0.25);
 }
 
 .field {
@@ -83,7 +155,7 @@ label {
   display: block;
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--gray-700);
+  color: var(--ink);
   margin-bottom: 6px;
 }
 
@@ -98,22 +170,28 @@ input[type="date"],
 select,
 textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--gray-200);
-  border-radius: 8px;
+  padding: 11px 14px;
+  border: 1px solid rgba(91, 111, 245, 0.25);
+  border-radius: 12px;
   font-size: 0.95rem;
   font-family: inherit;
-  color: var(--gray-700);
-  background: var(--white);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  color: var(--ink);
+  background: var(--field-bg);
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa1c4;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--blue-500);
-  box-shadow: 0 0 0 3px var(--blue-100);
+  border-color: var(--accent);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(91, 111, 245, 0.18);
 }
 
 textarea {
@@ -124,7 +202,7 @@ textarea {
   display: block;
   text-align: right;
   font-size: 0.78rem;
-  color: var(--gray-400);
+  color: var(--ink-soft);
   margin-top: 4px;
 }
 
@@ -142,25 +220,26 @@ textarea {
   gap: 6px;
   font-weight: 400;
   font-size: 0.9rem;
-  background: var(--blue-50);
-  border: 1px solid var(--gray-200);
+  background: var(--field-bg);
+  border: 1px solid rgba(91, 111, 245, 0.2);
   border-radius: 999px;
   padding: 8px 14px;
   cursor: pointer;
   margin-bottom: 0;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
 }
 
 .radio-group label:has(input:checked),
 .checkbox-group label:has(input:checked) {
-  background: var(--blue-100);
-  border-color: var(--blue-500);
-  color: var(--blue-900);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+  transform: translateY(-1px);
 }
 
 .radio-group input,
 .checkbox-group input {
-  accent-color: var(--blue-700);
+  accent-color: var(--accent-deep);
   width: 16px;
   height: 16px;
 }
@@ -168,9 +247,9 @@ textarea {
 .hint {
   margin: 8px 0 0;
   font-size: 0.85rem;
-  color: var(--blue-700);
-  background: var(--blue-50);
-  border-radius: 8px;
+  color: var(--accent-deep);
+  background: rgba(91, 111, 245, 0.12);
+  border-radius: 10px;
   padding: 8px 12px;
 }
 
@@ -185,7 +264,7 @@ textarea {
 
 .checkbox-confirm input {
   margin-top: 3px;
-  accent-color: var(--blue-700);
+  accent-color: var(--accent-deep);
   width: 18px;
   height: 18px;
   flex-shrink: 0;
@@ -194,30 +273,41 @@ textarea {
 button[type="submit"] {
   width: 100%;
   margin-top: 20px;
-  padding: 14px;
-  background: var(--blue-700);
+  padding: 15px;
+  background: linear-gradient(120deg, var(--accent), var(--accent-deep));
   color: var(--white);
+  font-family: "Kanit", "Sarabun", sans-serif;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
-  transition: background 0.15s, transform 0.05s;
+  box-shadow: 0 10px 28px rgba(91, 111, 245, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 button[type="submit"]:hover {
-  background: var(--blue-900);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(91, 111, 245, 0.45);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
 }
 
 button[type="submit"]:disabled {
-  background: var(--gray-400);
+  background: #9aa1c4;
+  box-shadow: none;
   cursor: not-allowed;
+  transform: none;
 }
 
+/* success / error popup — same glass material as the rest of the page */
 .popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(11, 61, 145, 0.45);
+  background: rgba(35, 42, 77, 0.35);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,25 +320,22 @@ button[type="submit"]:disabled {
 }
 
 .popup-box {
-  background: var(--white);
+  background: var(--glass-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 32px 28px 24px;
   max-width: 320px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 12px 40px rgba(11, 61, 145, 0.25);
-  animation: popup-pop 0.18s ease-out;
+  box-shadow: 0 20px 60px rgba(35, 42, 77, 0.3);
+  animation: popup-pop 0.2s ease-out;
 }
 
 @keyframes popup-pop {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
 
 .popup-icon {
@@ -262,7 +349,7 @@ button[type="submit"]:disabled {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--white);
-  background: var(--green);
+  background: linear-gradient(120deg, var(--accent), var(--accent-deep));
 }
 
 .popup-box.error .popup-icon {
@@ -271,24 +358,25 @@ button[type="submit"]:disabled {
 
 .popup-box p {
   margin: 0 0 20px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--gray-700);
+  font-family: "Kanit", "Sarabun", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .popup-box button {
   padding: 10px 28px;
-  background: var(--blue-700);
+  background: linear-gradient(120deg, var(--accent), var(--accent-deep));
   color: var(--white);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .popup-box button:hover {
-  background: var(--blue-900);
+  filter: brightness(1.08);
 }
 
 @media (max-width: 560px) {
@@ -297,10 +385,14 @@ button[type="submit"]:disabled {
   }
 
   .page {
-    padding: 20px 12px 48px;
+    padding: 32px 12px 56px;
   }
 
-  .card {
-    padding: 18px;
+  .card,
+  .page-header {
+    padding: 20px 18px;
   }
+
+  .orb-1, .orb-4 { width: 130px; height: 130px; }
+  .orb-2, .orb-3 { width: 80px; height: 80px; }
 }

@@ -9,10 +9,9 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         "Timestamp",
-        "คำนำหน้า",
         "รหัสนิสิต",
-        "ชื่อจริง",
-        "นามสกุล",
+        "คำนำหน้า",
+        "ชื่อ-นามสกุล",
         "ชื่อเล่น",
         "วันเกิด",
         "ชั้นปี",
@@ -32,10 +31,9 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date(),
-      data.prefix || "",
       data.studentId || "",
-      data.firstName || "",
-      data.lastName || "",
+      data.prefix || "",
+      data.fullName || "",
       data.nickname || "",
       data.birthdate || "",
       data.year || "",
